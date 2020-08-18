@@ -1,0 +1,184 @@
+#include<iostream>
+#include<string>
+#include<stdlib.h> 
+#include <conio.h>
+#include <stdio.h>
+using namespace std;
+class atm {
+string  pass="ali";
+	string uname = "";
+	char a;
+	string name;
+	double credit_id;
+	double bill_id;
+	double amount;
+public:
+	static double balance;
+	atm() {
+		system("cls"); 
+		cout << " -----------------------------------------------------------------------  \n";
+		cout << "|                        AUTOMATED TELLER MACHINE                       | \n";
+		cout << " -----------------------------------------------------------------------  \n";
+		cout << "|           Please enter username and password to continue.             | \n";
+		cout << "|                                                                       | \n";
+		cout << "|                                                                       | \n";
+		cout << "|                                                                       | \n";
+		cout << " -----------------------------------------------------------------------  \n\n";
+		cout << "Username: ";
+		cin >> uname;
+		cout << "\npassword: ";
+		
+		a = _getch();
+		while (a != 13) {
+			pass.push_back(a);
+			cout << "*";
+			a = _getch();
+
+		}
+		if (pass == "ali") {
+			cout << "correct password\n";
+		}
+		
+	}
+
+	void menue ();
+	void checkbalance();
+	void withdraw();
+	void deposit();
+	void transfer(); 
+	void oute();
+	void bill_paid();
+	void set(string na,double id);
+	double getc();
+	string getna();
+
+
+};
+ double atm::balance = 25000;
+ void atm::set(string na,double id){
+
+  name=na;
+credit_id=id;}
+string atm::getna(){
+	return name;
+}
+double atm::getc(){
+	return credit_id;
+}
+
+void atm::menue() {
+	system("cls");
+	int opt;
+	cout << " -----------------------------------------------------------------------  \n";
+	cout << "|                                 Menu                                 | \n";
+	cout << " ----------------- ----------------- ----------------- -----------------  \n";
+	cout << "                     Please Select option to continue:              \n" << endl << endl;
+	cout << "1) Check balance    : Press 1" << endl;
+	cout << "2) BIll paid        : Press 4" << endl;
+	cout << "3) Deposit Cash     : Press 3" << endl;
+	cout << "4) Withdraw Cash    : Press 2" << endl;
+	cout << "5) Exit             : Press 5" << endl;
+	cout << "\nEnter option: ";
+	cin >>opt;
+	switch(opt){
+	case 1:
+		checkbalance();
+		break;
+	case 2:
+		bill_paid();
+		break;
+	case 3:
+		deposit();
+		break;
+	case 4:
+withdraw();
+		break;
+	case 5:
+		oute();
+		break;
+	}
+
+	
+}
+void atm::bill_paid(){
+	system("cls");
+	cout<<"\nEnter ID of BILL: ";
+	cin>>bill_id;
+	cout<<"\nEnter BILL Amount: ";
+	cin>>amount;
+	if(amount<=balance){
+		balance=balance-amount;
+		cout<<"\n\tcustomer name: "<<getna();
+		cout<<"\n\tCredit NO: "<<getc();
+		cout<<"\n\n\t\t\tBill is paid\n ";
+	
+	system("pause");
+	system("cls");
+	menue();}
+	else{
+		cout<<"\ndeposit amount is not available\n";
+	}
+}
+void atm::checkbalance() {
+	system("cls");
+	cout << "\n\n\t\tBalance is  "<<balance<<endl;
+	system("pause");
+	system("cls");
+	  menue();
+	 
+}
+void  atm::withdraw() {
+	int withdrw = 0;
+	system("cls");
+	cout << "Enter amount to withdraw\n";
+	cin >> withdrw;
+	if (balance > withdrw) {
+		balance = balance - withdrw;
+		cout << "Your reamining balance is  " << balance<<endl;
+		
+	}
+	else {
+		cout << "sorry you dnt have enough balance\n";
+		system("pause");
+		menue();}
+	system("pause");
+	menue();}
+void atm::deposit() {
+	int dep;
+	system("cls");
+	cout << "\n\n\t\tEnter deposit Amount :";
+	cin >> dep;
+	balance += dep;
+	cout << "\n update Balance is " << balance<<endl;
+	system("pause");
+	menue();
+}
+void atm::transfer() {
+	system("cls");
+	int tamount;
+	cout << "Enter transfer amount :";
+	cin >> tamount;
+	if (tamount < balance) {
+		balance -= tamount;
+		cout << "Transfer Amount is " << tamount << endl;
+		cout << "Remaining Balance is " << balance << endl;
+		system("pause");
+		menue();
+	}
+	else {
+		cout << "you D'nt have much amount to transfer\n";
+		system("pause");
+		menue();
+	}
+}
+void atm::oute() {
+	int main();
+}
+int main() {
+	atm obj;
+     obj.set("sheraz",67356783);
+	obj.menue();
+	
+	
+	
+}
